@@ -1,1 +1,43 @@
+#co{
+  background-color: black;
+  color: white;
+}
+
+.signin{
+  background-color: black;
+  color: white;
+  border-radius: 25px;
+  height: 500px;
+  text-align: center;
+}
+
+.signup{
+  background-color: black;
+  color: white;
+  border-radius: 25px;
+  height: 600px;
+  text-align: center;
+}
+
+.center {
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+width: 400px;
+border: 1px solid black;
+padding: 10px;
+}
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #6a11cb;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+
 @import "bootstrap/scss/bootstrap"
