@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
 
 	protected
 	def configure_permitted_parameters
-		devise_parameter_sanitizer.permit(:log_in, keys: [:role])
+		devise_parameter_sanitizer.permit(:sign_in, keys: [:role])
 	end
 end

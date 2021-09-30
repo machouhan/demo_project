@@ -1,0 +1,12 @@
+<p><%= @product.price %></p>
+
+<div><%= image_tag(@product.image)%></div>
+
+<ul>
+  <li><%= link_to "Edit", edit_product_path(@product) %></li>
+  <li><%= link_to "Destroy", product_path(@product),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
+  <li><%= link_to "Back", products_path %></li>              
+</ul>
+

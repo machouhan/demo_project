@@ -4,21 +4,49 @@
     <a class="nav-link active" aria-current="page" href="#">Active</a>
   </li>
   <% if user_signed_in? %>
-  <li class="nav-item">
-    <a class="nav-link" href="/users/sign_out" :method :delete>Sign out</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href=" /users/edit" >Edit profile</a>
-  </li>
-  <% else %>
-  <li class="nav-item">
-    <a class="nav-link" href="/users/sign_in">Sign in</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/users/sign_up">Sign up</a>
-  </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/users/sign_out" :method :delete>Sign out</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/users/edit" >Edit profile</a>
+    </li>
+     <% if current_user.role == "seller" %>
+      <li class="nav-item">
+        <a class="nav-link" href="/products/new" >New Product</a>
+      </li>
+    <% end %>
+    <% else %>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/sign_in">Sign in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/sign_up">Sign up</a>
+      </li>
    <% end %>
 </ul>
 </div>
 
- 
+<div>
+  <table border="1">  
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th >Image</th>
+  </tr>
+
+  <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.price %></td> 
+          <td><%= image_tag(product.image)%></td>
+        </tr>
+  <% end %>
+</table>
+</div>
+
+
+
+
+
+
+  
