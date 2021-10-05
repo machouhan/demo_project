@@ -1,10 +1,13 @@
 class ProductsController < ApplicationController
+  before_action :find_product, except: [:index, :new, :create]
+
   def index
-    @products = Product.all
+    @products = Product.all 
+    @order_item = current_order.order_items.new  
   end
 
   def show
-    @product = Product.find(params[:id])
+    #@product = Product.find(params[:id])
   end
 
   def new
@@ -22,11 +25,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
+    #@product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
+   # @product = Product.find(params[:id])
 
     if @product.update(product_params)
       redirect_to @product
@@ -36,16 +39,24 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    #byebug
+   # @product = Product.find(params[:id])
     @product.destroy
-
-    redirect_to root_path
+    
+    redirect_to root_path 
   end
 
   private
     def product_params
-      params.require(:product).permit(:name, :price, :image)
+      params.require(:product).permit(:name, :price, :catagory, :description, :image)
     end
 
-  
+    def find_product
+      @product = Product.find(params[:id])
+    end
+
 end
+
+
+
+
