@@ -1,0 +1,27 @@
+<div class="container">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= running_total = 0 %>
+      <% @orders.each do |item| %>
+        <tr>
+          <td><%= item.product.name %></td>
+          <td><%= item.product.price %></td>
+          <td><%= item.quantity %></td>
+          <td><%= (item.quantity)*(item.product.price) %></td>
+          <%= running_total = running_total+item.quantity*item.product.price %>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<h3 style="padding-left: 20px;" >Total : <%= running_total %></h3>
+</div>
+

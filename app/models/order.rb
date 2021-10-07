@@ -1,15 +1,3 @@
 class Order < ApplicationRecord
-	has_many :order_items
-  belongs_to :product
-  before_save :set_subtotal
-
-  def subtotal
-    order_items.collect{|order_item| order_item.valid? ? (order_item.product.price)*(order_item.quantity) : 0}.sum 
-  end
-
-  private
-
-  def set_subtotal
-    self[:subtotal] = subtotal
-  end
+	belongs_to :product, :foreign_key => "product_id"
 end
