@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+
 	def index
 	    @orders = Order.all 
 	end
@@ -17,8 +19,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+
+    redirect_to root_path
+  end
+
   private
     def order_params
-      params.require(:order).permit(:product_id, :quantity)
+      params.require(:order).permit(:product_id, :quantity, :total, :user_id)
     end
 end

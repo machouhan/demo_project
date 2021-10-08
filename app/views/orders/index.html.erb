@@ -1,27 +1,30 @@
-<div class="container">
+<div class="container pr">
+  <h2>Cart</h2>
   <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= running_total = 0 %>
-      <% @orders.each do |item| %>
-        <tr>
-          <td><%= item.product.name %></td>
-          <td><%= item.product.price %></td>
-          <td><%= item.quantity %></td>
-          <td><%= (item.quantity)*(item.product.price) %></td>
-          <%= running_total = running_total+item.quantity*item.product.price %>
-        </tr>
-      <% end %>
-  </tbody>
-</table>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% running_total = 0 %> 
+        <% @orders.each do |order| %>
+          <% if order.user_id == current_user.id %>
+            <tr>
+              <td><%= order.product.name %></td>
+              <td><%= order.product.price %></td>
+              <td><%= order.quantity %></td>
+              <td><%= (order.quantity)*(order.product.price) %></td>
+              <% running_total = running_total+order.quantity*order.product.price %>
+            </tr>
+            <% end %>
+        <% end %>
+    </tbody>
+  </table>
 
-<h3 style="padding-left: 20px;" >Total : <%= running_total %></h3>
+  <h3 style="padding-left: 20px;" >Total : <%= running_total %></h3>
 </div>
 
