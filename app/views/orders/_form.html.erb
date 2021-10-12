@@ -1,0 +1,16 @@
+<div class="container pr">
+  <%= form_with model: order do |f| %>
+    <div class="field">
+      <%= f.label :quantity %><br>
+      <%= f.number_field :quantity, :value => order.quantity %>  
+    </div><br>
+    
+    <div>
+      <%= f.submit %>
+    </div><br>
+
+    <div>
+      <%= link_to "Back", orders_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

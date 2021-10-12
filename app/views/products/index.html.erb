@@ -22,9 +22,7 @@
                     <%= f.submit "Add to Cart" %><br>
                   <% end %>
                 <% end %>
-                <% if current_user.role == "seller" %>
-                   <%= link_to "Show", product, class: "btn btn-primary" %>
-                <% end %>
+               
                 
             </div>
           </div>
@@ -54,9 +52,7 @@
                     <%= f.submit "Add to Cart" %><br>
                   <% end %>
                 <% end %>
-                <% if current_user.role == "seller" %>
-                   <%= link_to "Show", product, class: "btn btn-primary" %>
-                <% end %>
+                
             </div>
           </div>
         <% end %> 
