@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  def index
-    @users = User.all
+  def show
+    @users = User.find(current_user.id)
   end
 
 end

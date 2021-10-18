@@ -13,34 +13,34 @@
   <header class="container-fluid">
   <div id="nav">
     <ul class="nav justify-content-end">
-      <li class="nav-item">
+      <li class="nav-item navb">
         <a class="nav-link active" aria-current="page" href=" /products ">Home</a>
       </li>
       <% if user_signed_in? %>
-          <li class="nav-item">
+          <li class="nav-item navb">
             <a class="nav-link" href="/users/sign_out" :method :delete>Sign out</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/users/edit" >Edit profile</a>
+          <li class="nav-item navb">
+            <a class="nav-link" href="/users" >Profile</a>
           </li>
-           <li class="nav-item">
+           <li class="nav-item navb">
             <a class="nav-link" href="/orders">Cart</a>
           </li>
         <% if current_user.role == "seller" %>
-            <li class="nav-item">
+            <li class="nav-item navb">
               <a class="nav-link" href="/products/new" >New Product</a>
             </li>
         <% end %>
       <% else %>
-          <li class="nav-item">
+          <li class="nav-item navb">
             <a class="nav-link" href="/users/sign_in">Sign in</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item navb">
             <a class="nav-link" href="/users/sign_up">Sign up</a>
           </li>
       <% end %> 
       <li class="nav-item">
-        <div class="dropdown">
+        <div class="dropdown navb">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Catagory
           </button>

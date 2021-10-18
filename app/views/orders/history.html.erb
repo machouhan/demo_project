@@ -1,9 +1,8 @@
 <div class="container pr"> 
 <% if @orders.empty? %>
-  <h2>Your cart is empty</h2>
-  <%= link_to "See previous orders", 'orders/history' %>
+  <h2>No Orders Yet</h2>
 <% else %>
-  <h2>Cart</h2>
+  <h2>Order History</h2>
   <table class="table">
     <thead>
       <tr>
@@ -11,6 +10,7 @@
         <th scope="col">Price</th>
         <th scope="col">Quantity</th>
         <th scope="col">Total</th>
+        <th scope="col">Order Date</th>
       </tr>
     </thead>
     <tbody>
@@ -20,10 +20,8 @@
               <td><%= order.product.name %></td>
               <td><%= order.product.price %></td>
               <td><%= order.quantity %>  
-                <%= link_to "Update", edit_order_path(order), class: "btn" %></td>
               <td><%= (order.quantity)*(order.product.price) %></td>
-              <td></td>
-              <td><%= button_to "Remove", order_path(order), method: :delete %></td>
+              <td><%= order.created_at %></td>
               <% running_total = running_total+order.quantity*order.product.price %>
             </tr>
         <% end %>
@@ -35,9 +33,5 @@
         </tr>
     </tbody>
   </table>
-  <%= link_to "Buy now", 'orders/buy' %>
 <% end %>
 </div>
-  
-
-

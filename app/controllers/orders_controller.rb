@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
 
-	def index
-	    @orders = Order.all 
-	end
+  def index
+    @orders = Order.where(user_id: current_user.id)
+    @orders = @orders.where(status: "cart")
+  end
 
-	def new
+  def new
     @order = Order.new
   end
 
@@ -18,16 +19,30 @@ class OrdersController < ApplicationController
       render :new
     end
   end
-
+ 
   def edit
     @order = Order.find(params[:id])
+  end
+
+  def buy
+    @orders = Order.where(user_id: current_user.id)  
+    @orders.update(status: "sold")
+    @orders.update(trashed: true)
+    flash.alert = "Items Buy Successfully"
+    redirect_to orders_path
+  end
+
+  def history
+    @orders = Order.where(user_id: current_user.id)
+    @orders = @orders.where(status: "sold")
+    render 'history'
   end
 
   def update
     @order = Order.find(params[:id])
 
     if @order.update(order_params)
-      redirect_to orders_path
+      redirect_to order
     else
       render :edit
     end
@@ -37,11 +52,11 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.destroy
 
-    redirect_to root_path
+    redirect_to orders_path
   end
 
   private
     def order_params
-      params.require(:order).permit(:product_id, :quantity, :total, :user_id)
+      params.require(:order).permit(:product_id, :quantity, :total, :user_id, :status, :trashed)
     end
 end

@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   end 
   
   root to: "products#index"
-  
+  get '/users' => 'users#show'
   resources :products
+  get 'orders/buy'
+  get 'orders/history'
   resources :orders
 
 end
+
