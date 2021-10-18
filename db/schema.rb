@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_091653) do
+ActiveRecord::Schema.define(version: 2021_10_18_060841) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2021_10_10_091653) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "buys", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "users_id", null: false
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_buys_on_order_id"
+    t.index ["users_id"], name: "index_buys_on_users_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "product_id"
     t.integer "quantity"
@@ -73,11 +83,13 @@ ActiveRecord::Schema.define(version: 2021_10_10_091653) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.string "status"
+    t.boolean "trashed"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.float "price"
+    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "catagory"
@@ -102,4 +114,6 @@ ActiveRecord::Schema.define(version: 2021_10_10_091653) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "buys", "orders"
+  add_foreign_key "buys", "users", column: "users_id"
 end
