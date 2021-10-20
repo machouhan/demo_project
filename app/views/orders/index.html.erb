@@ -19,11 +19,10 @@
             <tr>
               <td><%= order.product.name %></td>
               <td><%= order.product.price %></td>
-              <td><%= order.quantity %>  
-                <%= link_to "Update", edit_order_path(order), class: "btn" %></td>
+              <td><%= order.quantity %></td>
               <td><%= (order.quantity)*(order.product.price) %></td>
-              <td></td>
-              <td><%= button_to "Remove", order_path(order), method: :delete %></td>
+              <td><%= button_to "Remove", order_path(order), method: :delete, class: "btn btn-secondary" %></td>
+              <td><%= link_to "Update", edit_order_path(order), class: "btn btn-secondary" %></td>
               <% running_total = running_total+order.quantity*order.product.price %>
             </tr>
         <% end %>
@@ -32,6 +31,8 @@
           <td> </td>
           <td style="font-weight: bold;">Total :</td>
           <td style="font-weight: bold;"><%= running_total %></td>
+          <td></td>
+          <td></td>
         </tr>
     </tbody>
   </table>

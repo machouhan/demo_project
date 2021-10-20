@@ -1,13 +1,14 @@
 <div class="container pr">
   <h2 id="mob">Mobiles</h2>
-    <div class="container" style="display: flex;">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
       <% @products.each do |product| %> 
         <% if product.catagory == "Mobile" %>
+        <div class="col">
           <div class="card text-center" style="width: 25rem;">
             <%= image_tag(product.image, :size => "400x300")%>
             <div class="card-body">
-                <h5 class="card-title"><%= product.price %></h5>
                 <h5 class="card-title"><%= product.name %></h5>
+                <h5 class="card-title">Rs.<%= product.price %></h5>
                 <p class="card-text"><%= product.description %></p>
                 <%#= button_to "Buy now", checkout_create_path, params: [id: product.id], remote: true %>
                 <% if user_signed_in? %>
@@ -27,21 +28,27 @@
                 <% end %>     
             </div>
           </div>
+        </div>
         <% end %> 
       <% end %>
-    </div><br>
+  </div><br>
 
   <h2 id="access">Mobile accessories</h2>
-    <div class="container text-center" style="display: flex;">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
       <% @products.each do |product| %> 
         <% if product.catagory == "Mobile accessories" %>
-          <div class="card" style="width: 25rem;">
+        <div class="col">
+          <div class="card text-center" style="width: 25rem;">
             <%= image_tag(product.image, :size => "400x300")%>
             <div class="card-body">
-                <h5 class="card-title"><%= product.price %></h5>
                 <h5 class="card-title"><%= product.name %></h5>
+                <h5 class="card-title">Rs.<%= product.price %></h5>
                 <p class="card-text"><%= product.description %></p>
+                <%#= button_to "Buy now", checkout_create_path, params: [id: product.id], remote: true %>
                 <% if user_signed_in? %>
+                  <% if current_user.role == "seller" %>
+                    <%= link_to "Show", product, class: 'btn btn-secondary' %><br>
+                  <% end %>
                   <%= form_for Order.new do |f| %>
                   <%= f.hidden_field :product_id, :value => product.id %>
                   <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -52,13 +59,13 @@
                   <%= form_for Order.new do |f| %>
                     <%= f.submit "Add to Cart" %><br>
                   <% end %>
-                <% end %>
-                
+                <% end %>     
             </div>
           </div>
+        </div>
         <% end %> 
       <% end %>
-    </div>
+  </div>
 </div>
  
 
