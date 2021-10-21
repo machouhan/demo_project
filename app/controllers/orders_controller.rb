@@ -25,6 +25,9 @@ class OrdersController < ApplicationController
   end
 
   def buy
+    @order = Order.where(user_id: current_user.id)
+    @order = @order.where(status: "cart")
+    OrderMailer.with(order: @order, user_email: current_user.email).new_order_email.deliver_now 
     @orders = Order.where(user_id: current_user.id)  
     @orders.update(status: "sold")
     @orders.update(trashed: true)

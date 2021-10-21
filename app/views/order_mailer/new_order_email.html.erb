@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style type="text/css">
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <p>You successfully buyed items</p>
+    <p>Order details<br>
+    --------------------------
+    <table>
+      <thead>
+        <tr>
+        <th>Items</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% running_total = 0 %>
+        <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.product.name %></td>
+          <td><%= order.product.price %></td>
+           <td><%= order.quantity %></td>
+          <td><%= (order.quantity)*(order.product.price) %></td>
+          <% running_total = running_total+order.quantity*order.product.price %>
+        </tr>
+        <% end %>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td style="font-weight: bold;">Total</td>
+          <td style="font-weight: bold;"><%= running_total %></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
