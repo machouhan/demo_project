@@ -10,7 +10,6 @@
                 <h5 class="card-title"><%= product.name %></h5>
                 <h5 class="card-title">Rs.<%= product.price %></h5>
                 <p class="card-text"><%= product.description %></p>
-                <%#= button_to "Buy now", checkout_create_path, params: [id: product.id], remote: true %>
                 <% if user_signed_in? %>
                   <% if current_user.role == "seller" %>
                     <%= link_to "Show", product, class: 'btn btn-secondary' %><br>
@@ -44,7 +43,6 @@
                 <h5 class="card-title"><%= product.name %></h5>
                 <h5 class="card-title">Rs.<%= product.price %></h5>
                 <p class="card-text"><%= product.description %></p>
-                <%#= button_to "Buy now", checkout_create_path, params: [id: product.id], remote: true %>
                 <% if user_signed_in? %>
                   <% if current_user.role == "seller" %>
                     <%= link_to "Show", product, class: 'btn btn-secondary' %><br>

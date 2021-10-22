@@ -30,7 +30,6 @@ class OrdersController < ApplicationController
     OrderMailer.with(order: @order, user_email: current_user.email).new_order_email.deliver_now 
     @orders = Order.where(user_id: current_user.id)  
     @orders.update(status: "sold")
-    @orders.update(trashed: true)
     flash.alert = "Items Buy Successfully"
     redirect_to orders_path
   end
@@ -45,7 +44,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
     if @order.update(order_params)
-      redirect_to order
+      redirect_to orders_path
     else
       render :edit
     end
@@ -60,6 +59,6 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.require(:order).permit(:product_id, :quantity, :total, :user_id, :status, :trashed)
+      params.require(:order).permit(:product_id, :quantity, :total, :user_id, :status)
     end
 end
