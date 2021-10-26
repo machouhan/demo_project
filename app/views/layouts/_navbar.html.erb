@@ -12,7 +12,7 @@
 <body>
   <header class="container">
   <div id="nav">
-    <ul class="nav justify-content-end">
+    <ul class="nav justify-content-center">
       <li class="nav-item navb">
         <a class="nav-link active" aria-current="page" href=" /products ">Home</a>
       </li>
@@ -23,12 +23,14 @@
           <li class="nav-item navb">
             <a class="nav-link" href="/users" >Profile</a>
           </li>
-           <li class="nav-item navb">
-            <a class="nav-link" href="/orders">Cart</a>
-          </li>
-          <li class="nav-item navb">
-            <a class="nav-link" href="orders/history">Order History</a>
-          </li>
+          <% if current_user.role == "customer" %>
+            <li class="nav-item navb">
+              <a class="nav-link" href="/orders">Cart</a>
+            </li>
+            <li class="nav-item navb">
+              <a class="nav-link" href="orders/history">Order History</a>
+            </li>
+          <% end %>
         <% if current_user.role == "seller" %>
             <li class="nav-item navb">
               <a class="nav-link" href="/products/new" >New Product</a>
